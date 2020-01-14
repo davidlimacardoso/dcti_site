@@ -1,0 +1,89 @@
+/*IMPORT DA FONTE ROBOT*/
+
+@font-face {
+    font-family: roboto-light;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "roboto-regular", sans-serif;
+}
+
+/* Home section */
+.home {
+    width: 100%;
+    height: 20vh;
+    background-position: center top;
+    background-size: cover;
+}
+
+/* FONT NAVBAR */
+.nav div.main_list ul li a{
+    color: #343a40;
+}
+
+/* BANNER SOCIAL */
+.banner_social{
+    background-color: tomato;
+    width: 100%;
+    height: 300px;
+    margin-top: 100px;
+    background-position: center;
+    background-size: cover;
+ 
+}
+.title{
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+.social_link{
+    background-color: white;
+    display: flex;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    margin: auto;
+} 
+
+.social_link:hover{
+    background-color: rgb(255, 196, 0);
+    transition-duration: 500ms;
+}
+
+.img_cell{
+    margin-top: 5%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+   
+    .img_cell{
+        margin-top: 15%;
+    }
+    
+} 
+
+
+
+@media screen and (max-width:768px) {
+    
+    .nav div.main_list ul li a{
+        color: rgb(255, 255, 255);
+    }
+
+    .navTrigger i{
+        background-color: rgb(175, 173, 173);
+    }
+} 
+
+@media screen and (max-width:700px) {
+    
+
+}

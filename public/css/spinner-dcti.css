@@ -1,0 +1,40 @@
+#loading{
+    background: #dff9fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+}
+
+.logo-spinner{
+    animation: pulse 0.7s infinite;
+    display: table;
+    animation-direction: alternate;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}
+
+.spinner{
+    border: 8px solid rgba(0, 0, 0, .1);
+    border-left-color: #22a6b3;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    background-color: transparent;
+    position: absolute;
+}
+
+@keyframes spin{
+    to { transform: rotate(360deg); }
+}
+@-webkit-keyframes pulse {
+0% {
+-webkit-transform: scale(1);
+-webkit-filter: brightness(60%);
+}
+100% {
+-webkit-transform: scale(1.1);
+-webkit-filter: brightness(100%);
+}
+}

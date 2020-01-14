@@ -1,0 +1,80 @@
+/*IMPORT DA FONTE ROBOT*/
+
+@font-face {
+    font-family: roboto-light;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "roboto-regular", sans-serif;
+}
+
+
+
+/* Home section */
+
+.home {
+    width: 100%;
+    height: 80vh;
+    background-image: url(../storage/abstract-business-code-coder.jpg);
+    background-position: center top;
+    background-size: cover;
+    filter: contrast(50%);
+}
+
+
+.home_text {
+    margin-top:-260px;
+    padding-bottom: 10%;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px #111;
+}
+
+/* TITLES */
+.titles{
+    margin: 10% 0% 5% 0%;
+    text-align: center;
+}
+
+/* ARTICLE */
+article {
+    margin-top: 40px;
+
+}
+
+/* FADE IN EFFECT ON ARTICLES*/
+
+.hideme
+{
+    opacity:0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0;
+    }
+    .home_text{
+        margin-top: -290px;
+        padding-bottom: 260px;
+    }
+}
+
+@media screen and (max-width:768px) { 
+    .home_text{
+        margin-top: -290px;
+        padding-bottom: 200px;
+    }
+}
+@media all and (max-width:700px) {
+    .home_text{
+        margin-top: -50vh;
+        padding-bottom: 240px;
+    }
+}
+
+
