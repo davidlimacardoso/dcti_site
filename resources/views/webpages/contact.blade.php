@@ -21,9 +21,9 @@
 
         <script src="{{asset('js/app.js')}}"></script>
         <script src="{{asset('js/about.js')}}"></script>
+        <!--JQUERY VALIDATE-->
         <script src="{{asset('js/jquery.validate.min.js')}}"></script>
-        <!--RECAPTCHA-->
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+
     </head>
 
 @show
@@ -38,19 +38,29 @@
         @include('components/navbar')
 
     @show
-    
+
     <!--BANNER-->
     <section class="home">
         
     </section>
 
-    
+    <!--RETORNA VALIDAÇÃO MENSAGEM ENVIO!-->
+    @if (session('message'))
+        {!! session('message')  !!}
+    @endif
 
+    @if (session('error'))
+        {!! session('error')  !!}
+    @endif
+
+
+<!--FORMULARIO DE CONTATO-->
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="display-4">Contato</div>
-                <form id="contactForm" class="card needs-validation" action="indisponivel">
+                <form id="contactForm" class="card needs-validation" action="contactForm" method="POST">
+                    @csrf
                     <div class="col-12 my-3">
                         <label>Seu nome:</label>
                         <input type="text" name="nome" class="form-control">
@@ -68,9 +78,6 @@
                         <label>Escreva sua mensagem:</label>
                         <textarea class="form-control" name="mensagem" id="" cols="30" rows="5"></textarea>
                       </div>
-                      {{-- <div class="col-12 mb-3">
-                          <div class="g-recaptcha" data-sitekey="6LdgE88UAAAAAKABRewlHF9DSHHSUYnoSa-5cWhU"></div>
-                      </div> --}}
                       <div class="col-12 mb-3 text-center">
                         <button class="btn btn-success bold" type="submit">ENVIAR</button>
                     </div>
@@ -94,17 +101,16 @@
                     <div class="container">
                         <div class="row ml-md-5 ml-sm-0 ml-lg-0">
                             <div class="col-3">
-                                <a class="social_link" href="https://www.linkedin.com/in/davidlimacardoso/"><img class="img-fluid w-50" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgaGVpZ2h0PSI1MTJweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNTEycHgiPjxnIGZpbGw9IiMwMDc3YjUiPjxwYXRoIGQ9Im0yMy45OTQgMjR2LS4wMDFoLjAwNnYtOC44MDJjMC00LjMwNi0uOTI3LTcuNjIzLTUuOTYxLTcuNjIzLTIuNDIgMC00LjA0NCAxLjMyOC00LjcwNyAyLjU4N2gtLjA3di0yLjE4NWgtNC43NzN2MTYuMDIzaDQuOTd2LTcuOTM0YzAtMi4wODkuMzk2LTQuMTA5IDIuOTgzLTQuMTA5IDIuNTQ5IDAgMi41ODcgMi4zODQgMi41ODcgNC4yNDN2Ny44MDF6Ii8+PHBhdGggZD0ibS4zOTYgNy45NzdoNC45NzZ2MTYuMDIzaC00Ljk3NnoiLz48cGF0aCBkPSJtMi44ODIgMGMtMS41OTEgMC0yLjg4MiAxLjI5MS0yLjg4MiAyLjg4MnMxLjI5MSAyLjkwOSAyLjg4MiAyLjkwOSAyLjg4Mi0xLjMxOCAyLjg4Mi0yLjkwOWMtLjAwMS0xLjU5MS0xLjI5Mi0yLjg4Mi0yLjg4Mi0yLjg4MnoiLz48L2c+PC9zdmc+Cg==" /></a>
+                                <a class="social_link" href="https://www.linkedin.com/in/davidlimacardoso/"><img class="img-fluid" src="{{asset('storage/components/icones/linkedin.png')}}" /></a>
                             </div>
                             <div class="col-3">
-                                <a class="social_link" href="https://www.linkedin.com/in/davidlimacardoso/"><img class="img-fluid w-50" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgaGVpZ2h0PSI1MTJweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iNTEycHgiPjxnIGZpbGw9IiMwMDc3YjUiPjxwYXRoIGQ9Im0yMy45OTQgMjR2LS4wMDFoLjAwNnYtOC44MDJjMC00LjMwNi0uOTI3LTcuNjIzLTUuOTYxLTcuNjIzLTIuNDIgMC00LjA0NCAxLjMyOC00LjcwNyAyLjU4N2gtLjA3di0yLjE4NWgtNC43NzN2MTYuMDIzaDQuOTd2LTcuOTM0YzAtMi4wODkuMzk2LTQuMTA5IDIuOTgzLTQuMTA5IDIuNTQ5IDAgMi41ODcgMi4zODQgMi41ODcgNC4yNDN2Ny44MDF6Ii8+PHBhdGggZD0ibS4zOTYgNy45NzdoNC45NzZ2MTYuMDIzaC00Ljk3NnoiLz48cGF0aCBkPSJtMi44ODIgMGMtMS41OTEgMC0yLjg4MiAxLjI5MS0yLjg4MiAyLjg4MnMxLjI5MSAyLjkwOSAyLjg4MiAyLjkwOSAyLjg4Mi0xLjMxOCAyLjg4Mi0yLjkwOWMtLjAwMS0xLjU5MS0xLjI5Mi0yLjg4Mi0yLjg4Mi0yLjg4MnoiLz48L2c+PC9zdmc+Cg==" /></a>
+                            <a class="social_link" href="https://wa.me/5511975940756"><img class="img-fluid" src="{{asset('storage/components/icones/whatsapp.png')}}" /></a>
                             </div>
                             <div class="col-3">
-                                <a  class="social_link" href="https://www.messenger.com/t/david.cardoso.lm"><img class="img-fluid w-50" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cGF0aCBzdHlsZT0iZmlsbDojMjE5NkYzOyIgZD0iTTMyMCw4NS4zMzNoNjRjNS44OTEsMCwxMC42NjctNC43NzYsMTAuNjY3LTEwLjY2N3YtNjRDMzk0LjY2Nyw0Ljc3NiwzODkuODkxLDAsMzg0LDBoLTY0ICBjLTY0Ljc3MiwwLjA3MS0xMTcuMjYzLDUyLjU2MS0xMTcuMzMzLDExNy4zMzNWMTkySDEyOGMtNS44OTEsMC0xMC42NjcsNC43NzYtMTAuNjY3LDEwLjY2N3Y2NGMwLDUuODkxLDQuNzc2LDEwLjY2NywxMC42NjcsMTAuNjY3ICBoNzQuNjY3djIyNGMwLDUuODkxLDQuNzc2LDEwLjY2NywxMC42NjcsMTAuNjY3aDY0YzUuODkxLDAsMTAuNjY3LTQuNzc2LDEwLjY2Ny0xMC42Njd2LTIyNGg3NC42NjcgIGM0LjU4OS0wLjAwMyw4LjY2Mi0yLjk0MiwxMC4xMTItNy4yOTZsMjEuMzMzLTY0YzEuODYyLTUuNTg5LTEuMTYtMTEuNjI5LTYuNzQ5LTEzLjQ5MWMtMS4wODQtMC4zNjEtMi4yMi0wLjU0Ni0zLjM2My0wLjU0N2gtOTYgIHYtNzQuNjY3QzI4OCw5OS42NiwzMDIuMzI3LDg1LjMzMywzMjAsODUuMzMzeiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></a>
+                                <a  class="social_link" href="https://www.messenger.com/t/david.cardoso.lm"><img class="img-fluid" src="{{asset('storage/components/icones/facebook.png')}}" /></a>
                             </div>
                             <div class="col-3">
-                                <a class="social_link" href="mailto:david.lima.cd@gmail.com?subject=" title="david.lima.cd@gmail.com"><img class="img-fluid w-50" src="data:image/svg+xml;base64,
-                                    PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDkwLjIgNDkwLjIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5MC4yIDQ5MC4yOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGNsYXNzPSIiPjxnPjxnPgoJPHBhdGggZD0iTTQyMC45NSw2MS44QzM3Ni4yNSwyMC42LDMyMC42NSwwLDI1NC4yNSwwYy02OS44LDAtMTI5LjMsMjMuNC0xNzguNCw3MC4zcy03My43LDEwNS4yLTczLjcsMTc1ICAgYzAsNjYuOSwyMy40LDEyNC40LDcwLjEsMTcyLjZjNDYuOSw0OC4yLDEwOS45LDcyLjMsMTg5LjIsNzIuM2M0Ny44LDAsOTQuNy05LjgsMTQwLjctMjkuNWMxNS02LjQsMjIuMy0yMy42LDE2LjItMzguN2wwLDAgICBjLTYuMy0xNS42LTI0LjEtMjIuOC0zOS42LTE2LjJjLTQwLDE3LjItNzkuMiwyNS44LTExNy40LDI1LjhjLTYwLjgsMC0xMDcuOS0xOC41LTE0MS4zLTU1LjZjLTMzLjMtMzctNTAtODAuNS01MC0xMzAuNCAgIGMwLTU0LjIsMTcuOS05OS40LDUzLjYtMTM1LjdjMzUuNi0zNi4yLDc5LjUtNTQuNCwxMzEuNS01NC40YzQ3LjksMCw4OC40LDE0LjksMTIxLjQsNDQuN3M0OS41LDY3LjMsNDkuNSwxMTIuNSAgIGMwLDMwLjktNy42LDU2LjctMjIuNyw3Ny4yYy0xNS4xLDIwLjYtMzAuOCwzMC44LTQ3LjEsMzAuOGMtOC44LDAtMTMuMi00LjctMTMuMi0xNC4yYzAtNy43LDAuNi0xNi43LDEuNy0yNy4xbDE4LjYtMTUyLjFoLTY0ICAgbC00LjEsMTQuOWMtMTYuMy0xMy4zLTM0LjItMjAtNTMuNi0yMGMtMzAuOCwwLTU3LjIsMTIuMy03OS4xLDM2LjhjLTIyLDI0LjUtMzIuOSw1Ni4xLTMyLjksOTQuN2MwLDM3LjcsOS43LDY4LjIsMjkuMiw5MS4zICAgYzE5LjUsMjMuMiw0Mi45LDM0LjcsNzAuMywzNC43YzI0LjUsMCw0NS40LTEwLjMsNjIuOC0zMC44YzEzLjEsMTkuNywzMi40LDI5LjUsNTcuOSwyOS41YzM3LjUsMCw2OS45LTE2LjMsOTcuMi00OSAgIGMyNy4zLTMyLjYsNDEtNzIsNDEtMTE4LjFDNDg4LjA1LDE1Mi45LDQ2NS43NSwxMDMsNDIwLjk1LDYxLjh6IE0yNzMuNTUsMjkxLjljLTExLjMsMTUuMi0yNC44LDIyLjktNDAuNSwyMi45ICAgYy0xMC43LDAtMTkuMy01LjYtMjUuOC0xNi44Yy02LjYtMTEuMi05LjktMjUuMS05LjktNDEuOGMwLTIwLjYsNC42LTM3LjIsMTMuOC00OS44czIwLjYtMTksMzQuMi0xOWMxMS44LDAsMjIuMyw0LjcsMzEuNSwxNC4yICAgczEzLjgsMjIuMSwxMy44LDM3LjlDMjkwLjU1LDI1OS4yLDI4NC44NSwyNzYuNiwyNzMuNTUsMjkxLjl6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzOTdBREQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+CjwvZz48L2c+IDwvc3ZnPg==" /></a>
+                                <a class="social_link" href="mailto:david.lima.cd@gmail.com?subject=" title="david.lima.cd@gmail.com"><img class="img-fluid" src="{{asset('storage/components/icones/email.png')}}" /></a>
                             </div>
                         </div>
                     </div>
@@ -112,49 +118,10 @@
             </div>
         </div>
     </div>
-  
-    
+     
       <script>
-      $("#contactForm").validate({
-        errorClass: 'error',
-        validClass: 'valid',
-   rules: {
-            nome : {
-                required : true,
-                minlength : 3
-            },
-            email : {
-                required : true,
-            },
-            assunto : {
-                required : true,
-                minlength : 5,
-                maxlength : 30
-            },
-            mensagem : {
-                required : true,
-                maxlength : 1000
-            },
-    },
-    messages : {
-        nome : {
-            required : '<span class="text-danger">Por favor escreva seu nome!</span>'
-      },
-      email : {
-            required : '<span class="text-danger">Por favor escreva seu email!</span>'
-      },
-      assunto : {
-            required : '<span class="text-danger">Por favor escreva o assunto!</span>'
-      },
-       mensagem : {
-            required : '<span class="text-danger">Por favor deixe a sua mensagem!</span>'
-      },
-    }
-        
-   
-   
-  
- });
+
+     
       </script>
  <!--DYSPLAY FOOTER-->
  @section('footer')
@@ -164,8 +131,8 @@
 @show
 
 <script src="{{asset('js/navbar.js')}}"></script>
-<!--IDIOMA RECAPTCHA-->
-<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+<script src="{{asset('js/contact.js')}}"></script>
+
 
 </body>
 @show

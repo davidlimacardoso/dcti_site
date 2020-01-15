@@ -1,16 +1,9 @@
-/*IMPORT DA FONTE ROBOT*/
-
-@font-face {
-    font-family: roboto-light;
-    src: url('../fonts/Roboto/Roboto-Regular.ttf');
-}
-
 html,
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "roboto-regular", sans-serif;
+    font-family: sans-serif;
 }
 
 
